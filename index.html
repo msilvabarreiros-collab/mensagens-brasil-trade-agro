@@ -56,7 +56,7 @@ body.cot-on{background:linear-gradient(180deg,rgba(2,12,22,.14) 0,rgba(2,12,22,.
 <div class="panel"><h2>Dados da operação</h2><div class="opsgrid">
 <div><label for="oClient">Cliente</label><input id="oClient" placeholder="Ex.: João"></div>
 <div><label for="oProduct">Produto</label><select id="oProduct"><option>Boi Gordo</option><option>Milho</option><option>Café</option><option>Soja</option></select></div>
-<div class="wide"><label for="oStrategy">Estratégia</label><select id="oStrategy"><optgroup label="PUT"><option value="VPUT">Venda de PUT</option><option value="PUT">Compra de PUT Spread</option><option value="VPS">Venda de PUT Spread</option><option value="CPSVC">Compra de PUT Spread com Venda de CALL</option><option value="VPSCC">Venda de PUT Spread com Compra de CALL</option></optgroup><optgroup label="CALL"><option value="VCALL">Venda de CALL</option><option value="CALL" selected>Compra de CALL Spread</option><option value="VCS">Venda de CALL Spread</option><option value="CCSVP">Compra de CALL Spread com Venda de PUT</option><option value="VCSCP">Venda de CALL Spread com Compra de PUT</option></optgroup></select></div>
+<div class="wide"><label for="oStrategy">Estratégia</label><select id="oStrategy"><optgroup label="PUT"><option value="CPUT">Compra de PUT</option><option value="VPUT">Venda de PUT</option><option value="PUT">Compra de PUT Spread</option><option value="VPS">Venda de PUT Spread</option><option value="CPSVC">Compra de PUT Spread com Venda de CALL</option><option value="VPSCC">Venda de PUT Spread com Compra de CALL</option></optgroup><optgroup label="CALL"><option value="CCALL">Compra de CALL</option><option value="VCALL">Venda de CALL</option><option value="CALL" selected>Compra de CALL Spread</option><option value="VCS">Venda de CALL Spread</option><option value="CCSVP">Compra de CALL Spread com Venda de PUT</option><option value="VCSCP">Venda de CALL Spread com Compra de PUT</option></optgroup></select></div>
 <div><label for="oExpiry">Vencimento</label><input id="oExpiry" type="date"></div>
 <div><label for="oRef">Cotação atual (R$)</label><input id="oRef" type="number" step="any" inputmode="decimal"></div>
 <div id="wBuyK"><label for="oBuyK">Strike comprado (R$)</label><input id="oBuyK" type="number" step="any" inputmode="decimal"></div>
@@ -435,7 +435,34 @@ const SIM5=`Simulação para [Contratos] contrato(s):
 • Perda máxima: [PerdaMax]
 
 `;
+const EXB=EX.replace('Faixa de operação','Preço de exercício (strike)');
+const SIMB=`Simulação para [Contratos] contrato(s):
+• [FluxoInicial]
+• Ganho máximo possível: [GanhoMax]
+• Ponto de equilíbrio: [Equilíbrio]
+• Custo máximo: [PerdaMax]
+
+`;
+const TAILB=`Se tiver interesse, podemos apresentar os detalhes da operação e explicar os possíveis cenários antes de qualquer decisão.`;
 const TPLS={
+CPUT:HEAD+`Uma das vantagens dessa estratégia é que ela possui custo inicial definido: você paga um prêmio para comprar a opção, e esse valor é também a sua perda máxima, sem necessidade de chamadas adicionais de margem, conforme as condições de negociação da operação.
+
+Como funciona?
+A estratégia se chama [ESTRATÉGIA].
+De forma simples, você compra uma opção de venda (PUT), que dá o direito de vender o produto pelo preço de exercício. Se o preço do produto cair abaixo do ponto de equilíbrio até o vencimento, a operação tende a gerar ganho, que aumenta conforme a queda. Se o preço ficar acima do preço de exercício, a opção tende a expirar sem valor e a perda fica limitada ao prêmio pago e aos custos da operação.
+
+`+EXB+SIMB+`O objetivo é buscar ganho com uma possível queda do preço, com investimento e risco previamente definidos, sem precisar movimentar o produto físico.
+
+`+TAILB,
+CCALL:HEAD+`Uma das vantagens dessa estratégia é que ela possui custo inicial definido: você paga um prêmio para comprar a opção, e esse valor é também a sua perda máxima, sem necessidade de chamadas adicionais de margem, conforme as condições de negociação da operação.
+
+Como funciona?
+A estratégia se chama [ESTRATÉGIA].
+De forma simples, você compra uma opção de compra (CALL), que dá o direito de comprar o produto pelo preço de exercício. Se o preço do produto subir acima do ponto de equilíbrio até o vencimento, a operação tende a gerar ganho, que aumenta conforme a alta. Se o preço ficar abaixo do preço de exercício, a opção tende a expirar sem valor e a perda fica limitada ao prêmio pago e aos custos da operação.
+
+`+EXB+SIMB+`O objetivo é buscar ganho com uma possível alta do preço, com investimento e risco previamente definidos, sem precisar movimentar o produto físico.
+
+`+TAILB,
 VPUT:HEAD+`Nesta estratégia, você recebe um prêmio logo no início da operação. Em contrapartida, assume a obrigação de comprar o produto pelo preço de exercício caso o mercado esteja abaixo dele no vencimento. Por envolver uma opção vendida, a operação exige depósito de garantia (margem), conforme as regras da B3 e da corretora.
 
 Como funciona?
@@ -520,6 +547,8 @@ function loadTpl(k){tplState[curKey]=o('oTpl').value;curKey=k;o('oTpl').value=tp
 const fx=(a,b)=>M(Math.max(a,b))+' (Strike maior) a '+M(Math.min(a,b))+' (Strike menor)';
 const credChk=v=>!(v.sp-v.bp>0)?'O prêmio líquido (venda − compra) precisa ser positivo (trava de crédito).':!(v.sp-v.bp<Math.abs(v.s-v.b))?'Revise os prêmios: o crédito não pode ser maior ou igual à distância entre os strikes.':'';
 const NEW={
+CPUT:{n:'COMPRA DE PUT',dir:'baixa',buy:true,L:{b:'Strike da PUT comprada (R$)',bp:'Prêmio da PUT comprada (R$/un.)'},legs:v=>[['P',1,v.b,v.bp]],chk:v=>v.bp>0?'':'O prêmio da opção comprada deve ser maior que zero.',faixa:v=>M(v.b)},
+CCALL:{n:'COMPRA DE CALL',dir:'alta',buy:true,L:{b:'Strike da CALL comprada (R$)',bp:'Prêmio da CALL comprada (R$/un.)'},legs:v=>[['C',1,v.b,v.bp]],chk:v=>v.bp>0?'':'O prêmio da opção comprada deve ser maior que zero.',faixa:v=>M(v.b)},
 VPUT:{n:'VENDA DE PUT',dir:'manutenção ou alta',inf:false,L:{s:'Strike da PUT vendida (R$)',sp:'Prêmio da PUT vendida (R$/un.)'},legs:v=>[['P',-1,v.s,v.sp]],chk:v=>'',faixa:v=>M(v.s)},
 VPS:{n:'VENDA DE PUT SPREAD',dir:'manutenção ou alta',roi:true,L:{b:'Strike da PUT comprada (R$) — menor',s:'Strike da PUT vendida (R$) — maior',bp:'Prêmio da PUT comprada (R$/un.)',sp:'Prêmio da PUT vendida (R$/un.)'},legs:v=>[['P',1,v.b,v.bp],['P',-1,v.s,v.sp]],chk:v=>!(v.b<v.s)?'Na VENDA DE PUT SPREAD, o strike da PUT comprada deve ser menor que o da PUT vendida.':credChk(v),faixa:v=>fx(v.b,v.s)},
 CPSVC:{n:'COMPRA DE PUT SPREAD COM VENDA DE CALL',dir:'baixa',inf:true,L:{b:'Strike da PUT comprada (R$) — maior',s:'Strike da PUT vendida (R$) — menor',bp:'Prêmio da PUT comprada (R$/un.)',sp:'Prêmio da PUT vendida (R$/un.)',k3:'Strike da CALL vendida (R$)',p3:'Prêmio da CALL vendida (R$/un.)'},legs:v=>[['P',1,v.b,v.bp],['P',-1,v.s,v.sp],['C',-1,v.k3,v.p3]],chk:v=>!(v.b>v.s)?'Na PUT Spread, o strike da PUT comprada deve ser maior que o da PUT vendida.':!(v.k3>v.b)?'O strike da CALL vendida deve ser maior que o strike da PUT comprada.':'',faixa:v=>'PUT Spread de '+fx(v.b,v.s)+' e CALL vendida em '+M(v.k3)},
@@ -545,7 +574,7 @@ const c=NEW[type];
 const L=c?c.L:{b:'Strike comprado (R$)',s:'Strike vendido (R$)',bp:'Prêmio da compra (R$/un.)',sp:'Prêmio da venda (R$/un.)'};
 [['b','oBuyK','wBuyK'],['s','oSellK','wSellK'],['bp','oBuyP','wBuyP'],['sp','oSellP','wSellP'],['k3','oK3','wK3'],['p3','oP3','wP3']].forEach(([k,i,w])=>{o(w).hidden=!L[k];if(L[k])document.querySelector('label[for="'+i+'"]').textContent=L[k]});
 if(!c){lab('oNet','PRÊMIO LÍQUIDO / UN.');lab('oInv','INVESTIMENTO INICIAL');lab('oLoss','CUSTO MÁXIMO');lab('oRoi','RETORNO POTENCIAL')}
-const n=o('oNote');n.hidden=!c;n.textContent=c?(c.inf?'Atenção: nesta estratégia a perda pode ser ilimitada e há exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.':'Estratégia com opção vendida: pode haver exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.'):''}
+const n=o('oNote');n.hidden=!c||!!c.buy;n.textContent=c&&!c.buy?(c.inf?'Atenção: nesta estratégia a perda pode ser ilimitada e há exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.':'Estratégia com opção vendida: pode haver exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.'):''}
 function updateNew(type){
 const c=NEW[type],prod=o('oProduct').value,ref=num('oRef'),m=num('oMult'),q=num('oQty'),fin=Number.isFinite;
 const v={b:num('oBuyK'),s:num('oSellK'),bp:num('oBuyP'),sp:num('oSellP'),k3:num('oK3'),p3:num('oP3')};
@@ -570,10 +599,10 @@ lab('oNet',r&&r.d<0?'CRÉDITO LÍQUIDO / UN.':'PRÊMIO LÍQUIDO / UN.');o('oNet'
 o('oOp').textContent=r?M(r.op):'—';
 lab('oInv',r&&r.out<0?'CRÉDITO INICIAL (LÍQUIDO DE CUSTOS)':'INVESTIMENTO INICIAL');o('oInv').textContent=r?M(Math.abs(r.out)):'—';
 o('oGain').textContent=r?(r.R.gInf?'ilimitado':M(r.gain)+(r.R.zG?' *':'')):'—';
-lab('oLoss','PERDA MÁXIMA');o('oLoss').textContent=r?(r.R.lInf?'ilimitada':M(r.loss)+(r.R.zL?' *':'')):'—';
+lab('oLoss',c.buy?'CUSTO MÁXIMO':'PERDA MÁXIMA');o('oLoss').textContent=r?(r.R.lInf?'ilimitada':M(r.loss)+(r.R.zL?' *':'')):'—';
 lab('oRoi',c.roi?'RETORNO S/ RISCO MÁXIMO':'RETORNO POTENCIAL');o('oRoi').textContent=r&&r.roi!==null?f(r.roi)+'%':'—';
 o('oBE').textContent=r?beT:'—';
-o('oNote').textContent=(c.inf?'Atenção: nesta estratégia a perda pode ser ilimitada e há exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.':'Estratégia com opção vendida: pode haver exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.')+(star?' Valores com * são teóricos: só ocorrem se o preço chegar a zero.':'');
+const nt=c.buy?'':(c.inf?'Atenção: nesta estratégia a perda pode ser ilimitada e há exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.':'Estratégia com opção vendida: pode haver exigência de garantia (margem) na B3. O valor da garantia não é calculado aqui — confirme com a mesa.');o('oNote').textContent=nt+(star?(nt?' ':'')+'Valores com * são teóricos: só ocorrem se o preço chegar a zero.':'');o('oNote').hidden=!o('oNote').textContent;
 const exp=o('oExpiry').value,sk=['b','s','k3'].filter(k=>keys.includes(k));
 const V={'[Nome]':o('oClient').value.trim()||'[Nome]','[DIREÇÃO]':c.dir,'[PRODUTO]':PROD[prod],'[ESTRATÉGIA]':c.n,'[Produto]':prod,'[Cotação]':fin(ref)?f(ref):'[Cotação]','[Faixa]':sk.every(k=>fin(v[k]))?c.faixa(v):'[Faixa]','[Vencimento]':exp?exp.split('-').reverse().join('/'):'[Vencimento]','[Contratos]':fin(q)?String(q):'[Contratos]',
 '[FluxoInicial]':r?(r.out<0?'Crédito inicial (líquido de custos): '+M(-r.out):'Investimento inicial: '+M(r.out)):'[FluxoInicial]','[GanhoMax]':r?gT:'[GanhoMax]','[PerdaMax]':r?lT:'[PerdaMax]','[Equilíbrio]':r?beT:'[Equilíbrio]','[RetornoRisco]':r&&r.roi!==null?f(r.roi)+'%':'[RetornoRisco]'};
