@@ -112,8 +112,8 @@ header small{color:var(--mu);font-size:12px;letter-spacing:.8px;text-transform:u
 .panel{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 16px 40px rgba(0,0,0,.35)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:18px}
 label{display:block;font-size:11px;color:var(--mu);margin-bottom:5px;text-transform:uppercase;letter-spacing:.7px;font-weight:600}
-input,textarea{width:100%;background:rgba(4,10,20,.7);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:11px 13px;font-size:15px;transition:.2s}
-input:focus,textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(47,140,255,.2)}
+input,textarea,select{width:100%;background:rgba(4,10,20,.7);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:11px 13px;font-size:15px;transition:.2s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(47,140,255,.2)}
 textarea{min-height:340px;font-family:"JetBrains Mono",Consolas,monospace;font-size:13px;line-height:1.55;resize:vertical}
 h3{margin:2px 0 12px;font-size:12px;color:var(--ac2);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
 .copy{margin-top:14px;width:100%;padding:14px;background:linear-gradient(135deg,var(--ok),#10b981);border-color:transparent;color:#03150d;font-size:15px;box-shadow:0 8px 24px rgba(25,211,138,.3)}
@@ -194,7 +194,7 @@ h3{margin:2px 0 12px;font-size:12px;color:var(--ac2);text-transform:uppercase;le
 </div></div>
 
 </div></template><script>
-const IMAGES=[{"id": "comparativo", "title": "Produtor que não faz proteção × Produtor que já opera", "sub": "Comparativo mês a mês (JAN–NOV) · lavoura", "prods": ["milho", "soja", "café"], "file": "produtor-com-e-sem-protecao.jpg", "src": "imagens/produtor-com-e-sem-protecao.jpg", "use": [["conv", "Sem tempo para agendar", "Mostra o custo de ir adiando (\"Agora não, estou sem tempo\")."], ["conv", "Cliente quer aguardar / decidir", "Mostra o efeito de esperar \"mais um pouco\", mês a mês."], ["conv", "Retomada — Ainda tem interesse?", "Reforça a retomada comparando quem protege e quem não protege."], ["conv", "Toque de Realidade", "Combina com a ideia de não deixar para pensar só depois que o preço cair."], ["conv", "Cuidar do patrimônio e proteger o resultado", "Reforça que a proteção precisa fazer parte do planejamento."], ["aq", "3 — Situação de identificação", "Ajuda o produtor a se identificar com a situação."]]}, {"id": "fisico-b3-milho", "title": "Mercado Físico × Mercado da B3 — Milho", "sub": "Queda de R$ 5,00/saca · 20.000 sacas · neutraliza R$ 100.000", "prods": ["milho"], "file": "mercado-fisico-b3-milho.jpg", "src": "imagens/mercado-fisico-b3-milho.jpg", "use": [["cad", "D3 — Impacto financeiro", "Exemplo da queda de preço do milho e do impacto em 20 mil sacas."], ["cad", "D5 — Exemplo de proteção", "Mostra a perda no físico sendo compensada pela operação na B3."], ["conv", "Proteção de preço — Como funciona na prática", "Ilustra o mercado físico × mercado da B3, passo a passo."], ["conv", "Produtor agrícola — soja e milho", "Exemplo prático com milho para apoiar o convite à sessão."]]}, {"id": "fisico-b3-boi", "title": "Mercado Físico × Mercado da B3 — Boi gordo", "sub": "Queda de R$ 10,00/@ · 1.500 cabeças · neutraliza R$ 225.000", "prods": ["boi gordo"], "file": "mercado-fisico-b3-boi-gordo.jpg", "src": "imagens/mercado-fisico-b3-boi-gordo.jpg", "use": [["cad", "D3 — Impacto financeiro", "Exemplo da queda da arroba e do impacto em 1.500 cabeças."], ["cad", "D5 — Exemplo de proteção", "Mostra a perda no físico sendo compensada pela operação na B3."], ["conv", "Proteção de preço — Como funciona na prática", "Ilustra o mercado físico × mercado da B3, passo a passo."], ["conv", "Pecuarista — boi gordo", "Exemplo prático com boi gordo para apoiar o convite à sessão."]]}];
+const IMAGES=[{"id": "comparativo", "title": "Produtor que não faz proteção × Produtor que já opera", "sub": "Comparativo mês a mês (JAN–NOV) · lavoura", "prods": ["milho", "soja", "café"], "file": "produtor-com-e-sem-protecao.jpg", "src": "imagens/produtor-com-e-sem-protecao.jpg", "use": [["conv", "Sem tempo para agendar", "Mostra o custo de ir adiando (\"Agora não, estou sem tempo\")."], ["conv", "Cliente quer aguardar / decidir", "Mostra o efeito de esperar \"mais um pouco\", mês a mês."], ["conv", "Retomada — Ainda tem interesse?", "Reforça a retomada comparando quem protege e quem não protege."], ["conv", "Toque de Realidade", "Combina com a ideia de não deixar para pensar só depois que o preço cair."], ["conv", "Cuidar do patrimônio e proteger o resultado", "Reforça que a proteção precisa fazer parte do planejamento."], ["aq", "3 — Situação de identificação", "Ajuda o produtor a se identificar com a situação."]]}, {"id": "fisico-b3-milho", "title": "Mercado Físico × Mercado da B3 — Milho", "sub": "Queda de R$ 5,00/saca · 20.000 sacas · neutraliza R$ 100.000", "prods": ["milho"], "file": "mercado-fisico-b3-milho.jpg", "src": "imagens/mercado-fisico-b3-milho.jpg", "use": [["cad", "D3 — Impacto financeiro", "Exemplo da queda de preço do milho e do impacto em 20 mil sacas."], ["cad", "D5 — Exemplo de proteção", "Mostra a perda no físico sendo compensada pela operação na B3."], ["conv", "Convite para a sessão", "Ilustra o mercado físico × mercado da B3, passo a passo."], ["conv", "Convite para a sessão", "Exemplo prático com milho para apoiar o convite à sessão."]]}, {"id": "fisico-b3-boi", "title": "Mercado Físico × Mercado da B3 — Boi gordo", "sub": "Queda de R$ 10,00/@ · 1.500 cabeças · neutraliza R$ 225.000", "prods": ["boi gordo"], "file": "mercado-fisico-b3-boi-gordo.jpg", "src": "imagens/mercado-fisico-b3-boi-gordo.jpg", "use": [["cad", "D3 — Impacto financeiro", "Exemplo da queda da arroba e do impacto em 1.500 cabeças."], ["cad", "D5 — Exemplo de proteção", "Mostra a perda no físico sendo compensada pela operação na B3."], ["conv", "Convite para a sessão", "Ilustra o mercado físico × mercado da B3, passo a passo."], ["conv", "Convite para a sessão", "Exemplo prático com boi gordo para apoiar o convite à sessão."]]}];
 let imgSel=0;
 const PROD_NAMES={'boi gordo':'Boi gordo','milho':'Milho','soja':'Soja','café':'Café'};
 const TAB_NAMES={cad:'Cadência',conv:'Conversando',aq:'Aquecimento',end:'Encerramento'};
@@ -221,11 +221,11 @@ const groups=[{id:'cad',name:'CADÊNCIA',items:[
 ['D4 — Reflexão comercial','WhatsApp',`[Nome], queria deixar duas perguntas para você:\n\nPara quem produz, é melhor vender mais barato ou mais caro?\n\nE para quem compra sua produção, é melhor comprar mais barato ou mais caro?\n\nA resposta é simples: cada lado busca o melhor preço para si.\n\nQuem compra naturalmente busca pagar menos e também pode utilizar o mercado futuro para se proteger das mudanças de preço.\n\nO produtor também pode utilizar esse mercado para buscar proteção contra a queda dos preços.\n\nEntão fica uma pergunta: na hora de vender, você prefere depender somente do preço que estiver sendo oferecido ou conhecer uma alternativa para se proteger caso o mercado caia?`],
 ['D5 — Exemplo de proteção','Imagem + WhatsApp',`[Nome], lembra do exemplo que te enviei sobre o impacto de uma queda no preço?\n\nÉ justamente para administrar esse tipo de risco que existe a proteção de preço na B3.\n\nEm uma proteção de venda, se o preço do contrato futuro cair, a operação pode gerar um resultado positivo que ajuda a compensar a queda do preço da produção no mercado físico.\n\nExistem custos e diferenças entre os mercados, mas é uma ferramenta que vale a pena conhecer.\n\nVocê já sabia que o produtor também pode utilizar essa proteção?`],
 ['D6 — Última ligação','Somente ligação',`Realizar a última tentativa de ligação. Não enviar WhatsApp. Se o lead atender, interromper a cadência e seguir para CONVERSANDO.`],
-['D6 — Aviso de encerramento em 2 dias','WhatsApp',`Caso não tenhamos um retorno nos próximos 2 dias, vamos encerrar nosso contato por enquanto. Não queremos que você perca a oportunidade de ter mais previsibilidade e proteger o resultado da sua produção.\nAinda tem interesse? Ficamos no aguardo da sua resposta!`],
+['D6 — Aviso de encerramento em 2 dias','WhatsApp',`Caso não tenhamos um retorno nos próximos 2 dias, vamos encerrar nosso contato por enquanto. Não queremos que você perca a oportunidade de ter mais previsibilidade e proteger o resultado da sua produção.
+
+Ainda tem interesse? Ficamos no aguardo da sua resposta!`],
 ['D7 — Encerramento sem resposta','WhatsApp',`Oi, [Nome], tudo bem?\n\nTentei contato algumas vezes e não conseguimos conversar, então vou encerrar minhas tentativas por enquanto.\n\n${closing}`]
 ]},{id:'conv',name:'CONVERSANDO',items:[
-['Após a primeira ligação — Qualquer produto','Apresentação + agendamento',`Oi, [Nome]! Aqui é o [Responsável], da Brasil Trade Agro.\n\nConforme conversamos há pouco, somos um escritório vinculado à Terra Investimentos, com atuação voltada ao agronegócio.\n\nNosso trabalho é ajudar produtores, pecuaristas, compradores e cooperativas a entenderem como funcionam os contratos futuros da B3 e como eles podem ser utilizados na proteção de preços.\n\nTambém temos uma frente educacional, onde aprofundamos esse conhecimento e apresentamos diferentes estratégias de proteção.\n\n[DetalhesContrato]\n\nComo comentei, o próximo passo seria uma videochamada de 15 a 20 minutos com nosso especialista, para mostrar exemplos práticos e entender melhor a sua realidade.\n\nQual seria um bom dia para realizarmos essa conversa?`,'1 · Após a ligação'],
-['Após a primeira ligação — Geral','Apresentação + agendamento',`Oi, [Nome]! Aqui é o [Responsável], da Brasil Trade Agro.\n\nConforme conversamos há pouco, nosso trabalho é ajudar produtores e compradores a conhecerem o mercado futuro da B3 e as possibilidades de proteção de preço.\n\nTemos também uma frente educacional, com exemplos e estratégias para diferentes situações de comercialização.\n\nO próximo passo seria uma videochamada gratuita de 15 a 20 minutos com nosso especialista para aprofundar o assunto e tirar suas dúvidas.\n\nQual seria um bom dia para conversarmos?`,'1 · Após a ligação'],
 ['Mensagem pós ligação sem agendamento','Apresentação + campos editáveis',`Conforme conversamos há pouco, somos um escritório vinculado à Terra Investimentos, com atuação voltada ao agronegócio.
 
 Nosso trabalho é ajudar produtores, pecuaristas, compradores e cooperativas a entenderem como funcionam os contratos futuros da B3 e como eles podem ser utilizados na proteção de preços.
@@ -237,9 +237,9 @@ Também temos uma frente educacional, onde aprofundamos esse conhecimento e apre
 Como comentei, o próximo passo seria uma videochamada de 15 a 20 minutos com nosso especialista, para mostrar exemplos práticos e entender melhor a sua realidade.
 
 Qual seria um bom dia para realizarmos essa conversa?`,'1 · Após a ligação'],
-['Qualificar 1 — Entender o interesse','Pergunta aberta: o que despertou o interesse',`Oi, [Nome]! Tudo bem?
+['Qualificar 1 — Entender o interesse','Pergunta aberta: o que despertou o interesse',`[Nome]! Tudo bem?
 
-Me conta uma coisa: o que despertou seu interesse em conhecer a proteção de preço [do produto]?
+O que despertou seu interesse em conhecer a proteção de preço [do produto]?
 
 Pergunto para entender o seu momento antes de te mostrar qualquer coisa, e assim não te passar algo que não faça sentido para a sua realidade.`,'1.5 · Qualificação do lead'],
 ['Qualificar 2 — Necessidade, prazo e volume','Se tem produto, quando vende e quanto',`Obrigado por me contar, [Nome]!
@@ -276,43 +276,21 @@ Disposição para avaliar a operação: (alta / média / baixa)
 Melhor dia e horário para a videochamada:
 
 Só agendar a sessão com o Emerson se houver produto, volume e prazo definidos, e abertura para avaliar a operação.`,'1.5 · Qualificação do lead'],
-['Proteção de preço — Como funciona na prática','Explicação + convite para sessão',`Oi, [Nome]! Tudo bem?
+['Convite para a sessão','Apresentação da Sessão Estratégica',`Olá, [Nome], tudo bem?
 
-Você sabia que é possível buscar proteção contra a queda dos preços sem mudar a forma como vende sua produção?
+Você já conhece a possibilidade de proteger o preço da sua produção pelo mercado financeiro, sem precisar mudar a forma como negocia sua mercadoria no mercado físico?
 
-Você continua negociando normalmente com seus compradores no mercado físico. A diferença é que, utilizando contratos futuros na B3, podemos estruturar uma operação para buscar compensar parte de uma eventual desvalorização da sua produção.
+A ideia é simples: você passa meses investindo na produção, mas, quando chega a hora de vender, uma queda no preço [do produto] pode comprometer parte do resultado de todo esse trabalho.
 
-E é justamente essa parte que gostaria de te mostrar.
+Por meio de estratégias com contratos futuros na B3, é possível estruturar uma proteção que busque compensar financeiramente parte de uma eventual queda nos preços, trazendo mais previsibilidade para o seu negócio.
 
-Na nossa Sessão Estratégica, compartilhamos a tela e apresentamos exemplos práticos: como funciona a proteção, o que acontece se o preço cair e quais são os custos e riscos envolvidos.
+E é justamente isso que gostaria de te mostrar.
 
-É uma videochamada de aproximadamente 20 a 25 minutos, gratuita e sem compromisso, para você conhecer essa alternativa e tirar suas dúvidas.
+Na nossa Sessão Estratégica, compartilhamos a tela e apresentamos exemplos práticos, com números, mostrando como funciona a proteção, os possíveis cenários, custos e riscos envolvidos.
 
-Consegue separar uns 20 minutinhos nos próximos dias para eu te mostrar isso na prática?`,'2 · Convite para a sessão'],
-['Pecuarista — boi gordo','Convite para sessão estratégica',`Olá, [Nome], tudo bem?
+É uma videochamada gratuita, de aproximadamente 20 a 25 minutos, sem compromisso, para você conhecer essa alternativa e tirar suas dúvidas.
 
-Hoje existe uma possibilidade de você trabalhar a proteção do preço do boi pelo mercado financeiro, sem precisar mudar a forma como já vende seus animais.
-
-A ideia é simples: você passa meses investindo na produção, mas, quando chega a hora de vender, uma queda no preço da arroba pode comprometer o resultado de todo esse trabalho.
-
-E é justamente aí que entra a proteção de preço. Ela permite buscar uma compensação financeira caso o mercado caia, ajudando a preservar parte do resultado e trazendo mais previsibilidade para o seu negócio.
-
-Aqui no escritório, gostamos de mostrar isso na prática, com números e exemplos, porque é muito mais fácil entender quando você consegue visualizar o que acontece em cada cenário.
-
-Em uma videochamada de 20 a 25 minutos, consigo te mostrar como funciona e quais possibilidades existem para a sua realidade.
-
-*Você consegue separar esse tempinho nos próximos dias para eu te apresentar?* Acho que vale a pena conhecer, até para entender como evitar que uma queda no mercado leve embora parte do dinheiro que você trabalhou tanto para ganhar.`,'2 · Convite para a sessão'],
-['Produtor agrícola — soja e milho','Convite para sessão estratégica',`Você já conhece a possibilidade de proteger o preço da sua produção pelo mercado financeiro?
-
-Pergunto porque o produtor passa meses investindo na lavoura, com custos de sementes, fertilizantes, defensivos e toda a operação. Mas, quando chega a hora de vender, o preço da soja ou do milho pode cair e acabar comprometendo boa parte do resultado esperado.
-
-O que muita gente ainda não conhece é que existem estratégias com contratos futuros na B3 que permitem trabalhar essa proteção, mantendo a negociação da produção no mercado físico normalmente.
-
-Aqui no escritório, gostamos de mostrar como funciona na prática, com exemplos e números, para você entender como essa ferramenta pode ajudar a reduzir o impacto de uma queda nos preços e trazer mais previsibilidade para o negócio.
-
-Em uma videochamada de 20 a 25 minutos, compartilho minha tela e te mostro alguns cenários para você entender melhor como funciona.
-
-*Você consegue separar um tempinho nos próximos dias para conversarmos?* Às vezes, conhecer uma ferramenta dessas pode fazer diferença na hora de preservar o resultado de todo o trabalho da safra.`,'2 · Convite para a sessão'],
+*Você consegue separar uns 20 minutinhos nos próximos dias para eu te mostrar como funciona na prática?*`,'2 · Convite para a sessão'],
 ['Horários disponíveis','Agendamento | horários editáveis',`A seguir vou te mandar os horarios disponiveis que temos para a conversa online com nosso especialista através do google meet acredito que seria legal para conseguir te ajudar a entender como funcionam os contratos da B3 e conhecer um pouco mais do nosso trabalho:
 
 [Data 1] - [Dia 1]:
@@ -322,32 +300,22 @@ Em uma videochamada de 20 a 25 minutos, compartilho minha tela e te mostro algun
 [Data 2] - [Dia 2]:
 
 [Horários 2]`,'3 · Agendamento'],
-['Conversamos, mas não agendamos','Convite para sessão',`Oi, [Nome], tudo bem?\n\nConversamos há um tempo sobre proteção de preço [do produto], mas acabamos não conseguindo marcar nossa videochamada.\n\nQueria saber se ainda faz sentido para você conhecer melhor como funciona essa proteção.\n\nSe tiver interesse, podemos separar uns 15 a 20 minutos para conversar com nosso especialista.\n\nO que acha?`,'3 · Agendamento'],
-['Retomada — Alinhar videochamada','Nova tentativa de agendamento',`[Nome], bom dia! Tudo bem?
+['Retomada — Reagendar videochamada educativa','Retoma o contato sem compromisso',`Oi, [Nome], tudo bem?
 
-Tentei entrar em contato novamente para alinharmos nossa videochamada.
+Conversamos há um tempo sobre a possibilidade de proteção de preço [do produto], mas acabamos não conseguindo alinhar nossa videochamada.
 
-A ideia é que possamos nos conhecer melhor e apresentar um pouco do nosso trabalho, mostrando na prática, com o compartilhamento da nossa tela, como funciona nossa atuação e a forma como trabalhamos.
+Queria saber se ainda tem interesse em conhecer melhor nosso trabalho. A ideia é separar uns 20 a 25 minutos para um *bate-papo de caráter educativo e informativo sobre contratos futuros*, no qual podemos apresentar nossa metodologia, mostrar na prática como funciona nossa atuação e esclarecer suas dúvidas.
 
-Quero deixar claro que esse primeiro contato é apenas para você conhecer nossa metodologia e tirar suas dúvidas, não para iniciar operações ou assumir qualquer compromisso.
+Esse primeiro contato é apenas para você conhecer nosso trabalho e avaliar as alternativas disponíveis, sem compromisso de iniciar qualquer operação.
 
-Você ainda tem interesse em conhecer nosso trabalho? Assim consigo atualizar meu painel e organizar os próximos contatos.`,'3 · Agendamento'],
-['Retomada — Videochamada educativa','Reforça o caráter educativo, sem compromisso',`[Nome], tentei contato para alinharmos nossa conversa por videochamada. Reforço que será um bate-papo de caráter educativo e informativo sobre contratos futuros, para conhecer melhor o mercado e tirar dúvidas, sem compromisso de começar a operar.
+Ainda faz sentido conversarmos?`,'3 · Agendamento'],
+['Sem tempo para agendar','Lead conversou, mas adiou o agendamento',`[Nome], hoje o preço [do produto] está em R$ [Valor], e sabemos que o mercado pode mudar bastante ao longo do tempo.
 
-A ideia é compartilhar conhecimento para que você esteja mais preparado para tomar decisões e aproveitar as oportunidades do mercado.
+Entendo que esteja sem tempo para conversarmos agora, mas gostaria de encontrar 20 minutinhos para apresentar como funciona o mercado futuro e as ferramentas que podem ajudar a trazer mais previsibilidade aos seus negócios.
 
-Você ainda tem interesse? Me dê um retorno para alinharmos um horário.`,'3 · Agendamento'],
-['Sem tempo para agendar','Lead conversou, mas adiou o agendamento',`[Nome], conversamos sobre o mercado futuro de [produto] e as oportunidades que surgem com suas oscilações. Hoje, o preço [do produto] está em R$ [Valor], e sabemos que o mercado pode apresentar mudanças ao longo do tempo.
+Nossa sessão é gratuita e sem compromisso, com um bate-papo de caráter educativo e informativo.
 
-Entendo que, neste momento, você esteja sem tempo para agendar nossa conversa, mas é uma pena deixar esse assunto para depois.
-
-Afinal, quem busca entender melhor o funcionamento do mercado e conhecer as ferramentas disponíveis consegue se preparar melhor e ter uma visão diferente de quem fica totalmente à mercê das oscilações de preços.
-
-De toda forma, fico à disposição! Nossa sessão é gratuita e sem compromisso, justamente para você visualizar o mercado na prática e entender como tudo funciona.
-
-Quando conseguir separar uns 20 minutinhos, vamos agendar nosso bate-papo!`,'3 · Agendamento'],
-['Combinar melhor horário para contato','Lead pediu para falar depois',`Tranquilo, [Nome]! Assim que possível, me avise qual seria o melhor horário para eu entrar em contato. Gostaria de conversar um pouco sobre esse assunto, que tem ajudado muitos pecuaristas e produtores a enxergar novas oportunidades e ter mais previsibilidade nos negócios.`,'3 · Agendamento'],
-['Agendou e não compareceu','Reagendamento',`Oi, [Nome], tudo bem?\n\nVi que não conseguimos realizar nossa videochamada no horário combinado. Imagino que tenha surgido algum imprevisto.\n\nQueria saber se está tudo certo e se você ainda tem interesse em conhecer melhor as possibilidades de proteção de preço.\n\nSe fizer sentido, podemos combinar um novo horário que fique mais tranquilo para você.`,'3 · Agendamento'],
+Quando tiver disponibilidade, me avise o melhor horário. Será um prazer conversar!`,'3 · Agendamento'],
 ['Não compareceu — Reagendar com data e horário','Reagendamento + campos editáveis',`[Nome], no dia [Data], separei meu tempo e bloqueei minha agenda para te atender às [Horário], mas você não compareceu.
 
 Você nos procurou para conhecer e entender melhor sobre proteção de preços, uma ferramenta que tem se tornado cada vez mais importante para manter a competitividade e proteger a rentabilidade no mercado agro, especialmente porque não é possível depender exclusivamente das oscilações do mercado físico.
@@ -360,24 +328,22 @@ Dias atrás conversamos um pouco sobre contratos futuros de [produto] e proteç�
 Queria saber se você tem acompanhado as cotações dos contratos futuros de [produto] na B3 e se ficou com alguma dúvida sobre proteção de preço.
 
 Você ainda tem interesse em saber mais sobre o assunto?`,'4 · Relacionamento e conteúdo'],
-['Toque de Realidade','Reflexão sobre proteção de preço',`Hoje, perder dinheiro com as oscilações do mercado não é a única opção. Com o conhecimento e as ferramentas que existem, é possível buscar formas de proteger o preço da sua produção e ter mais previsibilidade no resultado.
-**O mercado pode até fugir do seu controle, mas conhecer as alternativas para se proteger está ao seu alcance. O importante é não deixar para pensar nisso só depois que o preço cair.**`,'4 · Relacionamento e conteúdo'],
-['Cuidar do patrimônio e proteger o resultado','Acompanhamento + proteção de preço',`Eu sei que a rotina no campo é corrida e sempre tem muita coisa para resolver. Mas, no meio de tanta preocupação com a produção, também é importante dedicar um pouco de tempo para cuidar do seu patrimônio e pensar em como evitar perder dinheiro com as oscilações de preço.
-Afinal, você investe meses de trabalho e dinheiro para produzir. Proteger esse resultado também precisa fazer parte do planejamento.
-E você não precisa entender tudo sozinho. Temos uma equipe preparada para te mostrar as possibilidades de proteção de preço e explicar como elas funcionam na prática.
-*O importante é você conhecer essas ferramentas e entender como pode cuidar melhor do resultado do seu trabalho.*`,'4 · Relacionamento e conteúdo'],
+['Toque de Realidade','Reflexão sobre proteção de preço',`As oscilações do mercado podem afetar o resultado da sua produção. Mas existem ferramentas que ajudam a proteger o preço e trazer mais previsibilidade.
+
+O importante é conhecer essas alternativas antes que o mercado mude.`,'4 · Relacionamento e conteúdo'],
+['Cuidar do patrimônio e proteger o resultado','Acompanhamento + proteção de preço',`Sei que a rotina no campo é corrida, mas cuidar do resultado da produção também faz parte do planejamento.
+
+Nossa equipe pode te apresentar as possibilidades de proteção de preço e explicar como funcionam na prática.`,'4 · Relacionamento e conteúdo'],
 ['Abra sua conta gratuita — Acompanhe o mercado','Abertura de conta + cotações',`Olá, [Nome], tudo bem?
 
-Queria te passar mais uma informação: pelo nosso site, você pode iniciar a abertura da sua conta gratuitamente e conhecer melhor as ferramentas disponíveis para acompanhar o mercado.
+Pelo nosso site, você pode iniciar gratuitamente a abertura da sua conta e acompanhar as cotações dos contratos futuros na B3.
 
-A ideia é que você consiga acompanhar as cotações dos contratos futuros na B3 e ficar mais próximo das oportunidades de proteção de preço para sua produção.
+Acesse: https://www.brasiltradeagro.com.br/
 
-Acesse:
-https://www.brasiltradeagro.com.br/
-
-Se tiver alguma dúvida sobre como começar, pode me chamar por aqui!`,'4 · Relacionamento e conteúdo'],
+Se tiver dúvidas, pode me chamar por aqui!`,'4 · Relacionamento e conteúdo'],
 ['Convite — Clube do Agro','Conteúdo complementar',`[Nome], queria aproveitar para te convidar para o nosso CLUBE DO AGRO.\n\nÉ um grupo voltado a produtores e pecuaristas, onde compartilhamos cotações dos contratos futuros de boi (BGI), milho (CCM), soja (SJC) e café (ICF) na B3, além de informações do mercado.\n\nA ideia é ajudar você a acompanhar os preços e conhecer melhor as possibilidades de proteção.\n\nEntre no grupo pelo link:\nhttps://chat.whatsapp.com/FO9cmxZS9H2D4cQFIy9jsk\n\nSerá um prazer ter você por lá!`,'4 · Relacionamento e conteúdo'],
 ['Conteúdo — YouTube e Spotify','Conteúdo complementar',`[Nome], aproveitando nosso contato, queria compartilhar dois canais com conteúdos sobre o mercado financeiro e o agronegócio.\n\nSão materiais para quem deseja acompanhar o mercado e conhecer melhor o funcionamento dos contratos futuros.\n\nYouTube — Eu na Bolsa com Você\nhttps://www.youtube.com/@eunabolsacomvc/streams\n\nSpotify\nhttps://open.spotify.com/show/7LUNZ17c35LgoJztT6wOzK\n\nFique à vontade para acompanhar!`,'4 · Relacionamento e conteúdo'],
+['Simulação — O que o mercado fez desde nosso contato','Calcula o ajuste hipotético da proteção (preencha preços e volume)',`[SIM]`,'4 · Relacionamento e conteúdo'],
 ['Pós-Sessão Estratégica — Feedback e próximos passos','Realizou a sessão estratégica',`Olá, [Nome], tudo bem?
 
 Passando para saber como foi sua Sessão Estratégica com o Emerson, nosso especialista no mercado agro.
@@ -424,13 +390,13 @@ Qual seria um bom horário para falarmos rapidinho?`]
 ['Conversamos, mas não alinhamos a videochamada','Lead já conversou',`[Nome], tudo bem?\n\nConversamos algumas vezes e infelizmente não conseguimos alinhar nossa videochamada para você saber mais sobre as proteções de preço, então vou encerrar minhas tentativas por enquanto.\n\nCaso queira retomar o assunto sobre proteção de preço, é só me mandar uma mensagem por aqui ou ligar neste número: ${phone}.\n\nDesejo muito sucesso para você, sua família e seus negócios!\n\nAbraço!\n[Responsável] — Brasil Trade Agro`],
 ['Agendou, não compareceu e não respondeu','Sessão não realizada',`Olá, [Nome], tudo bem?\n\nConversamos anteriormente sobre a proteção de preço [do produto] e chegamos a agendar nossa videochamada, mas infelizmente não conseguimos realizar esse encontro.\n\nComo também não conseguimos alinhar um novo horário, vou encerrar minhas tentativas por enquanto.\n\n${closing}`]
 ]},{id:'ops',name:'OPERAÇÕES',items:[]},{id:'cot',name:'COTADOR DE PROTEÇÃO',items:[]},{id:'img',name:'IMAGENS',items:[]}];
-const HRS=Array(4).fill('__:00 - (Horário de Brasília)').join('\n');const WD=['Domingo','Segunda Feira','Terça Feira','Quarta Feira','Quinta Feira','Sexta Feira','Sábado'];let tab='cad',selected=0,subtab='all';const editable={date1:'',date1Iso:'',day1:'',hours1:HRS,date2:'',date2Iso:'',day2:'',hours2:HRS,vencimento:'',valor:'',datenc:'',datencIso:'',horanc:''};const $=id=>document.getElementById(id);function group(){return groups.find(g=>g.id===tab)}const contractDetails={
+const HRS=Array(4).fill('__:00 - (Horário de Brasília)').join('\n');const WD=['Domingo','Segunda Feira','Terça Feira','Quarta Feira','Quinta Feira','Sexta Feira','Sábado'];let tab='cad',selected=0,subtab='all';const editable={date1:'',date1Iso:'',day1:'',hours1:HRS,date2:'',date2Iso:'',day2:'',hours2:HRS,vencimento:'',valor:'',datenc:'',datencIso:'',horanc:'',simIni:'',simAtu:'',simVol:'',simN:'',simFx:''};const $=id=>document.getElementById(id);function group(){return groups.find(g=>g.id===tab)}const contractDetails={
 'boi gordo':'No caso do boi gordo, cada contrato futuro representa 330 arrobas, com liquidação financeira e referência de preço definida nas especificações da B3.',
 'milho':'No caso do milho, cada contrato futuro representa 450 sacas, possui liquidação financeira e tem como referência de formação de preço a região de Campinas (SP).',
 'soja':'No caso da soja, os contratos futuros da B3 permitem acompanhar preços e avaliar estratégias de proteção. As características e os riscos da operação dependem do contrato e do vencimento escolhido.',
 'café':'No caso do café, os contratos futuros da B3 permitem acompanhar preços e avaliar estratégias de proteção. As características e os riscos da operação dependem do contrato e do vencimento escolhido.'
-};const d3Words={'boi gordo':{preco:'da arroba',ex:'Uma queda de R$ 10,00 por arroba, em um lote de 500 cabeças com média de 15 arrobas, representa R$ 75 mil a menos na venda.',res:'do pecuarista'},'milho':{preco:'do milho',ex:'Uma queda de R$ 10,00 por saca, em uma produção de 10 mil sacas, representa R$ 100 mil a menos na venda.',res:'da produção'},'soja':{preco:'da soja',ex:'Uma queda de US$ 2,00 por saca, em uma produção de 10 mil sacas, representa US$ 20 mil. Convertendo para reais, com o dólar a R$ 5,00, são R$ 100 mil a menos na venda.',res:'da produção'},'café':{preco:'do café',ex:'Uma queda de US$ 10,00 por saca, em uma produção de 2 mil sacas, representa US$ 20 mil. Convertendo para reais, com o dólar a R$ 5,00, são R$ 100 mil a menos na venda.',res:'da produção'}};const productWords={'boi gordo':{de:'do boi gordo',un:'arroba',gado:'o gado'},'milho':{de:'do milho',un:'saca',gado:'a produção'},'soja':{de:'da soja',un:'saca',gado:'a produção'},'café':{de:'do café',un:'saca',gado:'a produção'}};function content(){let result=group().items[selected][2];const values={'[Data 1]':editable.date1,'[Dia 1]':editable.day1,'[Horários 1]':editable.hours1,'[Data 2]':editable.date2,'[Dia 2]':editable.day2,'[Horários 2]':editable.hours2,'[Vencimento]':editable.vencimento,'[Valor]':editable.valor,'[Data]':editable.datenc,'[Horário]':editable.horanc};if(tab==='conv' && (selected===group().items.findIndex(x=>x[0]==='Horários disponíveis')||selected===group().items.findIndex(x=>x[0]==='Mensagem pós ligação sem agendamento')||selected===group().items.findIndex(x=>x[0]==='Sem tempo para agendar')||selected===group().items.findIndex(x=>x[0]==='Não compareceu — Reagendar com data e horário')))for(const [k,v] of Object.entries(values))result=result.replaceAll(k,v||k);return result.replaceAll('[DetalhesContrato]',contractDetails[$('product').value]).replaceAll('[do produto]',productWords[$('product').value].de).replaceAll('[unidade]',productWords[$('product').value].un).replaceAll('[o gado]',productWords[$('product').value].gado).replaceAll('[D3Preco]',d3Words[$('product').value].preco).replaceAll('[D3Exemplo]',d3Words[$('product').value].ex).replaceAll('[D3Resultado]',d3Words[$('product').value].res).replaceAll('[Nome]',$('name').value.trim()||'[Nome]').replaceAll('[produto]',$('product').value).replaceAll('[Responsável]',$('advisor').value).replaceAll('[Telefone]',$('phone').value)}function render(){const g=group();const isOps=tab==='ops',isCot=tab==='cot',isImg=tab==='img';document.querySelector('.fields').hidden=isOps||isCot||isImg;document.querySelector('main').hidden=isOps||isCot||isImg;$('opsView').hidden=!isOps;$('cotView').hidden=!isCot;$('imgView').hidden=!isImg;document.body.classList.toggle('cot-on',isCot);$('tabs').replaceChildren(...groups.map(x=>{let b=document.createElement('button');b.textContent=x.name;b.className=x.id===tab?'active':'';b.onclick=()=>{tab=x.id;selected=0;subtab='all';$('search').value='';render()};return b}));if(isImg)renderImages();if(isOps||isCot||isImg)return;const special=['Horários disponíveis','Mensagem pós ligação sem agendamento'];const st=$('subtabs');st.className='subtabs';st.replaceChildren();if(tab==='conv'){const stages=g.items.map(x=>x[3]).filter((v,i,a)=>v&&a.indexOf(v)===i);[['all','Todas as mensagens'],...stages.map(e=>['st:'+e,e]),['Horários disponíveis','Horários disponíveis'],['Mensagem pós ligação sem agendamento','Pós ligação sem agendamento']].forEach(([id,label])=>{let b=document.createElement('button');b.textContent=label;b.className=subtab===id?'active':'';b.onclick=()=>{subtab=id;selected=id==='all'?0:id.startsWith('st:')?g.items.findIndex(x=>x[3]===id.slice(3)):g.items.findIndex(x=>x[0]===id);$('search').value='';render()};st.append(b)})}const q=$('search').value.toLocaleLowerCase('pt-BR');{const els=[];let last=null;g.items.forEach((x,i)=>{if(subtab!=='all'&&!(subtab.startsWith('st:')?x[3]===subtab.slice(3):x[0]===subtab))return;if(!(x[0]+' '+x[1]).toLocaleLowerCase('pt-BR').includes(q))return;if(tab==='conv'&&subtab==='all'&&x[3]&&x[3]!==last){last=x[3];let h=document.createElement('div');h.className='stagehead';h.textContent=x[3];els.push(h)}let b=document.createElement('button');b.className='item'+(i===selected?' active':'');b.textContent=x[0];let sm=document.createElement('small');sm.textContent=x[1];b.append(sm);b.onclick=()=>{selected=i;render()};els.push(b)});$('items').replaceChildren(...els)}$('heading').textContent=g.items[selected][0];const f=$('customFields');f.replaceChildren();let fields=[];if(tab==='conv'&&g.items[selected][0]===special[0])fields=[['date1','Data 1 (ex.: 29/10)'],['day1','Dia 1 (ex.: Quinta feira)'],['hours1','Horários 1 — um por linha',true],['date2','Data 2 (ex.: 30/10)'],['day2','Dia 2 (ex.: Sexta feira)'],['hours2','Horários 2 — um por linha',true]];if(tab==='conv'&&g.items[selected][0]===special[1])fields=[['vencimento','Vencimento do contrato (ex.: janeiro)'],['valor','Cotação em R$ (ex.: 403,00)']];if(tab==='conv'&&g.items[selected][0]==='Sem tempo para agendar')fields=[['valor','Cotação em R$ (ex.: 403,00)']];if(tab==='conv'&&g.items[selected][0]==='Não compareceu — Reagendar com data e horário')fields=[['datenc','Data do encontro'],['horanc','Horário do encontro (ex.: 14h)']];const refs={};if(fields.length){f.className='custom-fields';for(const [key,label,wide] of fields){let wrap=document.createElement('div');if(wide)wrap.className='wide';let lab=document.createElement('label');lab.textContent=label;let inp=document.createElement(wide?'textarea':'input');refs[key]=inp;inp.placeholder=label;if(key==='date1'||key==='date2'){inp.type='date';inp.value=editable[key+'Iso'];const dk=key==='date1'?'day1':'day2';inp.oninput=()=>{const v=inp.value;editable[key+'Iso']=v;if(v){const [y,m,d]=v.split('-').map(Number);editable[key]=String(d).padStart(2,'0')+'/'+String(m).padStart(2,'0');editable[dk]=WD[new Date(y,m-1,d).getDay()]}else{editable[key]='';editable[dk]=''}refs[dk].value=editable[dk];$('message').textContent=content()}}else if(key==='datenc'){inp.type='date';inp.value=editable.datencIso;inp.oninput=()=>{const v=inp.value;editable.datencIso=v;if(v){const [y,m,d]=v.split('-').map(Number);editable.datenc=String(d).padStart(2,'0')+'/'+String(m).padStart(2,'0')}else editable.datenc='';$('message').textContent=content()}}else{inp.value=editable[key];inp.oninput=()=>{editable[key]=inp.value;$('message').textContent=content()}}wrap.append(lab,inp);f.append(wrap)}}$('message').textContent=content();renderSug(tab,g.items[selected][0]);renderPoll(g.items[selected][4])}
-$('name').addEventListener('input',render);$('product').addEventListener('change',render);$('advisor').addEventListener('change',render);$('phone').addEventListener('change',render);$('search').addEventListener('input',render);$('copy').onclick=async()=>{const t=content();try{await navigator.clipboard.writeText(t)}catch(e){let a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();document.execCommand('copy');a.remove()}const b=$('copy');b.textContent='Mensagem copiada!';setTimeout(()=>b.textContent='Copiar mensagem',1800)};render();
+};const d3Words={'boi gordo':{preco:'da arroba',ex:'Uma queda de R$ 10,00 por arroba, em um lote de 500 cabeças com média de 15 arrobas, representa R$ 75 mil a menos na venda.',res:'do pecuarista'},'milho':{preco:'do milho',ex:'Uma queda de R$ 10,00 por saca, em uma produção de 10 mil sacas, representa R$ 100 mil a menos na venda.',res:'da produção'},'soja':{preco:'da soja',ex:'Uma queda de US$ 2,00 por saca, em uma produção de 10 mil sacas, representa US$ 20 mil. Convertendo para reais, com o dólar a R$ 5,00, são R$ 100 mil a menos na venda.',res:'da produção'},'café':{preco:'do café',ex:'Uma queda de US$ 10,00 por saca, em uma produção de 2 mil sacas, representa US$ 20 mil. Convertendo para reais, com o dólar a R$ 5,00, são R$ 100 mil a menos na venda.',res:'da produção'}};const productWords={'boi gordo':{de:'do boi gordo',un:'arroba',gado:'o gado'},'milho':{de:'do milho',un:'saca',gado:'a produção'},'soja':{de:'da soja',un:'saca',gado:'a produção'},'café':{de:'do café',un:'saca',gado:'a produção'}};function content(){let result=group().items[selected][2];if(result==='[SIM]')result=buildSim();const values={'[Data 1]':editable.date1,'[Dia 1]':editable.day1,'[Horários 1]':editable.hours1,'[Data 2]':editable.date2,'[Dia 2]':editable.day2,'[Horários 2]':editable.hours2,'[Vencimento]':editable.vencimento,'[Valor]':editable.valor,'[Data]':editable.datenc,'[Horário]':editable.horanc};if(tab==='conv' && (selected===group().items.findIndex(x=>x[0]==='Horários disponíveis')||selected===group().items.findIndex(x=>x[0]==='Mensagem pós ligação sem agendamento')||selected===group().items.findIndex(x=>x[0]==='Sem tempo para agendar')||selected===group().items.findIndex(x=>x[0]==='Não compareceu — Reagendar com data e horário')))for(const [k,v] of Object.entries(values))result=result.replaceAll(k,v||k);return result.replaceAll('[DetalhesContrato]',contractDetails[$('product').value]).replaceAll('[do produto]',productWords[$('product').value].de).replaceAll('[unidade]',productWords[$('product').value].un).replaceAll('[o gado]',productWords[$('product').value].gado).replaceAll('[D3Preco]',d3Words[$('product').value].preco).replaceAll('[D3Exemplo]',d3Words[$('product').value].ex).replaceAll('[D3Resultado]',d3Words[$('product').value].res).replaceAll('[Nome]',$('name').value.trim()||'[Nome]').replaceAll('[produto]',$('product').value).replaceAll('[Responsável]',$('advisor').value).replaceAll('[Telefone]',$('phone').value)}function render(){const g=group();const isOps=tab==='ops',isCot=tab==='cot',isImg=tab==='img';document.querySelector('.fields').hidden=isOps||isCot||isImg;document.querySelector('main').hidden=isOps||isCot||isImg;$('opsView').hidden=!isOps;$('cotView').hidden=!isCot;$('imgView').hidden=!isImg;document.body.classList.toggle('cot-on',isCot);$('tabs').replaceChildren(...groups.map(x=>{let b=document.createElement('button');b.textContent=x.name;b.className=x.id===tab?'active':'';b.onclick=()=>{tab=x.id;selected=0;subtab='all';$('search').value='';render()};return b}));if(isImg)renderImages();if(isOps||isCot||isImg)return;const special=['Horários disponíveis','Mensagem pós ligação sem agendamento'];const st=$('subtabs');st.className='subtabs';st.replaceChildren();if(tab==='conv'){const stages=g.items.map(x=>x[3]).filter((v,i,a)=>v&&a.indexOf(v)===i);[['all','Todas as mensagens'],...stages.map(e=>['st:'+e,e]),['Horários disponíveis','Horários disponíveis'],['Mensagem pós ligação sem agendamento','Pós ligação sem agendamento']].forEach(([id,label])=>{let b=document.createElement('button');b.textContent=label;b.className=subtab===id?'active':'';b.onclick=()=>{subtab=id;selected=id==='all'?0:id.startsWith('st:')?g.items.findIndex(x=>x[3]===id.slice(3)):g.items.findIndex(x=>x[0]===id);$('search').value='';render()};st.append(b)})}const q=$('search').value.toLocaleLowerCase('pt-BR');{const els=[];let last=null;g.items.forEach((x,i)=>{if(subtab!=='all'&&!(subtab.startsWith('st:')?x[3]===subtab.slice(3):x[0]===subtab))return;if(!(x[0]+' '+x[1]).toLocaleLowerCase('pt-BR').includes(q))return;if(tab==='conv'&&subtab==='all'&&x[3]&&x[3]!==last){last=x[3];let h=document.createElement('div');h.className='stagehead';h.textContent=x[3];els.push(h)}let b=document.createElement('button');b.className='item'+(i===selected?' active':'');b.textContent=x[0];let sm=document.createElement('small');sm.textContent=x[1];b.append(sm);b.onclick=()=>{selected=i;render()};els.push(b)});$('items').replaceChildren(...els)}$('heading').textContent=g.items[selected][0];const f=$('customFields');f.replaceChildren();let fields=[];if(tab==='conv'&&g.items[selected][0]===special[0])fields=[['date1','Data 1 (ex.: 29/10)'],['day1','Dia 1 (ex.: Quinta feira)'],['hours1','Horários 1 — um por linha',true],['date2','Data 2 (ex.: 30/10)'],['day2','Dia 2 (ex.: Sexta feira)'],['hours2','Horários 2 — um por linha',true]];if(tab==='conv'&&g.items[selected][0]===special[1])fields=[['vencimento','Vencimento do contrato (ex.: janeiro)'],['valor','Cotação em R$ (ex.: 403,00)']];if(tab==='conv'&&g.items[selected][0]==='Sem tempo para agendar')fields=[['valor','Cotação em R$ (ex.: 403,00)']];if(tab==='conv'&&g.items[selected][0]==='Não compareceu — Reagendar com data e horário')fields=[['datenc','Data do encontro'],['horanc','Horário do encontro (ex.: 14h)']];if(tab==='conv'&&g.items[selected][0]==='Simulação — O que o mercado fez desde nosso contato')fields=[['simIni','Preço quando começamos a conversar (ex.: 320,00)'],['simAtu','Preço atual (ex.: 305,00)'],['simVol','Volume que o lead comercializa, em arrobas/sacas (ex.: 3300)'],['simN','Nº de contratos (opcional, substitui o cálculo automático)'],['simFx','Dólar para converter em R$ (opcional, só soja e café)']];const refs={};if(fields.length){f.className='custom-fields';for(const [key,label,wide] of fields){let wrap=document.createElement('div');if(wide)wrap.className='wide';let lab=document.createElement('label');lab.textContent=label;let inp=document.createElement(wide?'textarea':'input');refs[key]=inp;inp.placeholder=label;if(key==='date1'||key==='date2'){inp.type='date';inp.value=editable[key+'Iso'];const dk=key==='date1'?'day1':'day2';inp.oninput=()=>{const v=inp.value;editable[key+'Iso']=v;if(v){const [y,m,d]=v.split('-').map(Number);editable[key]=String(d).padStart(2,'0')+'/'+String(m).padStart(2,'0');editable[dk]=WD[new Date(y,m-1,d).getDay()]}else{editable[key]='';editable[dk]=''}refs[dk].value=editable[dk];$('message').textContent=content()}}else if(key==='datenc'){inp.type='date';inp.value=editable.datencIso;inp.oninput=()=>{const v=inp.value;editable.datencIso=v;if(v){const [y,m,d]=v.split('-').map(Number);editable.datenc=String(d).padStart(2,'0')+'/'+String(m).padStart(2,'0')}else editable.datenc='';$('message').textContent=content()}}else{inp.value=editable[key];inp.oninput=()=>{editable[key]=inp.value;$('message').textContent=content()}}wrap.append(lab,inp);f.append(wrap)}}$('message').textContent=content();renderSug(tab,g.items[selected][0]);renderPoll(g.items[selected][4])}
+const SIM_TAM={'boi gordo':330,'milho':450,'soja':450,'café':100};const SIM_USD={'soja':1,'café':1};function simNum(s){s=String(s||'').trim().replace(/\s/g,'').replace(/^R\$|^US\$/i,'');if(!s)return NaN;if(s.indexOf(',')>-1)s=s.replace(/\./g,'').replace(',','.');return parseFloat(s)}function simFmt(n,d){return n.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?2:d,maximumFractionDigits:d===undefined?2:d})}function buildSim(){const p=$('product').value;const tam=SIM_TAM[p]||0;const usd=!!SIM_USD[p];const cur=usd?'US$':'R$';const ab=p==='boi gordo'?'@':'sc';const ini=simNum(editable.simIni),atu=simNum(editable.simAtu),vol=simNum(editable.simVol),nMan=simNum(editable.simN),fx=simNum(editable.simFx);const ok=isFinite(ini)&&isFinite(atu)&&ini>0&&atu>0&&atu!==ini;const queda=ok&&atu<ini;const abs=ok?Math.abs(atu-ini):NaN;const per=ok?abs*tam:NaN;let n=NaN;if(nMan>0)n=Math.round(nMan);else if(vol>0)n=Math.max(1,Math.round(vol/tam));const tot=ok&&isFinite(n)?per*n:NaN;const brl=v=>usd&&fx>0&&isFinite(v)?' (aproximadamente R$ '+simFmt(v*fx)+')':'';const sIni=isFinite(ini)&&ini>0?cur+' '+simFmt(ini)+'/'+ab:'[Preço inicial]';const sAtu=isFinite(atu)&&atu>0?cur+' '+simFmt(atu)+'/'+ab:'[Preço atual]';const sAbs=ok?cur+' '+simFmt(abs)+'/'+ab:'[Variação]';const sPer=ok?cur+' '+simFmt(per)+brl(per):'[Ajuste por contrato]';const sTot=isFinite(tot)?cur+' '+simFmt(tot)+brl(tot):'[Ajuste total]';const sN=isFinite(n)?n+' '+(n===1?'contrato':'contratos'):'[Nº de contratos]';const sVol=vol>0?simFmt(vol,vol%1?2:0):(isFinite(n)?simFmt(n*tam,0):'[Volume]');const mov=ok&&!queda?'alta':'queda';let t='Oi, [Nome], tudo bem?\n\nQuando começamos a conversar, o preço [do produto] estava em '+sIni+'. Hoje está em '+sAtu+', uma '+mov+' de '+sAbs+'.\n\n';if(ok&&!queda){t+='Com uma proteção de venda, essa alta teria representado um ajuste negativo de:\n\n• '+sPer+' por contrato\n• '+sTot+' no seu volume de '+sVol+' [unidade]s ('+sN+')\n\nEsse valor seria compensado pela venda do produto físico a um preço melhor. A proteção trava o preço de venda: você se protege da queda e abre mão de parte da alta, em troca de previsibilidade.'}else{t+='Com uma proteção de venda, essa queda teria representado:\n\n• '+sPer+' por contrato\n• '+sTot+' no seu volume de '+sVol+' [unidade]s ('+sN+')\n\nEsse valor ajudaria a compensar a queda no preço físico, por meio dos ajustes diários.'}return t+'\n\nÉ uma simulação, não uma garantia de resultado.'}$('name').addEventListener('input',render);$('product').addEventListener('change',render);$('advisor').addEventListener('change',render);$('phone').addEventListener('change',render);$('search').addEventListener('input',render);$('copy').onclick=async()=>{const t=content();try{await navigator.clipboard.writeText(t)}catch(e){let a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();document.execCommand('copy');a.remove()}const b=$('copy');b.textContent='Mensagem copiada!';setTimeout(()=>b.textContent='Copiar mensagem',1800)};render();
 </script><script>
 (function(){
 const o=id=>document.getElementById(id);
@@ -724,7 +690,7 @@ const STRATS={
 };
 const MESES={F:"Janeiro",G:"Fevereiro",H:"Março",J:"Abril",K:"Maio",M:"Junho",N:"Julho",Q:"Agosto",U:"Setembro",V:"Outubro",X:"Novembro",Z:"Dezembro"};
 function venc(c){const m=String(c||"").toUpperCase().replace(/\s/g,"").match(/^[A-Z0-9]{2,4}?([FGHJKMNQUVXZ])(\d{2}|\d{4})$/);if(!m)return null;return MESES[m[1]]+"/"+(m[2].length===2?"20"+m[2]:m[2])}
-const S={asset:"BOI",side:"PUT",st:0,v:{}};
+const S={asset:"BOI",side:"PUT",st:0,v:{},flux:"auto"};
 const H=document.getElementById("cotView");const R=H.attachShadow({mode:"open"});R.appendChild(document.getElementById("cotTpl").content.cloneNode(true));const $=id=>R.getElementById(id);
 const num=x=>{let s=String(x==null?"":x).trim();if(!s)return 0;if(s.includes(","))s=s.replace(/\./g,"").replace(",",".");const n=parseFloat(s);return isNaN(n)?0:n};
 const nf=(n,d=2)=>n.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -781,16 +747,16 @@ function render(){
   theme();
   btns($("assets"),Object.keys(ASSETS).map(k=>[k,THEME[k].ico+" "+ASSETS[k].nome.toUpperCase()]).concat([["FX","💵 COTAÇÃO DÓLAR"]]),S.asset,k=>{
     if(k==="FX"){const b=$("fxbox");b.style.display=b.style.display==="block"?"none":"block";return}
-    S.asset=k;S.st=0;defaults();render()});
-  btns($("sides"),[["CALL","CALL"],["PUT","PUT"]],S.side,k=>{S.side=k;S.st=0;render()});
-  btns($("strats"),STRATS[S.side].map((s,i)=>[i,s.n]),S.st,i=>{S.st=i;render()});
-  $("common").innerHTML=`<div><label>Ativo (contrato)</label><input data-k="ativo" placeholder="Ex.: BGIX26" value="${S.v.ativo||""}"><span class="badge" id="venc"></span></div>`+field("cot","Cotação atual ("+a.un+")")+field("vol","Volume do contrato")+field("qtd","Quantidade de contratos")+field("corr","Corretagem (%)");
+    S.asset=k;S.st=0;S.flux="auto";defaults();render()});
+  btns($("sides"),[["CALL","CALL"],["PUT","PUT"]],S.side,k=>{S.side=k;S.st=0;S.flux="auto";render()});
+  btns($("strats"),STRATS[S.side].map((s,i)=>[i,s.n]),S.st,i=>{S.st=i;S.flux="auto";render()});
+  $("common").innerHTML=`<div><label>Ativo (contrato)</label><input data-k="ativo" placeholder="Ex.: BGIX26" value="${S.v.ativo||""}"><span class="badge" id="venc"></span></div>`+field("cot","Cotação atual ("+a.un+")")+field("vol","Volume do contrato")+field("qtd","Quantidade de contratos")+field("corr","Corretagem (%)")+`<div><label>Prêmio da operação</label><select data-flux><option value="auto"${S.flux==="auto"?" selected":""}>Automático (pela estratégia)</option><option value="paga"${S.flux==="paga"?" selected":""}>Cliente paga o prêmio</option><option value="recebe"${S.flux==="recebe"?" selected":""}>Cliente recebe o prêmio</option></select></div>`;
   const t=S.side, ex=st.ex;
   let h="";
   if(st.k==="s"){h=field("k1","Strike ("+a.un+")")+field("p1","Custo do prêmio ("+a.un+")")}
   else if(st.k==="p"){h=field("k1","Strike 1 – protegido")+field("k2","Strike 2 – máx. proteção")+field("p1","Prêmio líquido do spread")}
   else{h=field("k1","Strike 1 – protegido")+field("k2","Strike 2 – máx. proteção")+field("k3","Strike da "+ex+" – risco")+field("p1","Prêmio líquido do spread")+field("p2","Prêmio da "+ex)}
-  $("legs").innerHTML=h;
+  $("legs").innerHTML=h;const fs=R.querySelector("select[data-flux]");if(fs)fs.onchange=()=>{S.flux=fs.value;calc()};
   R.querySelectorAll("input[data-k]").forEach(i=>i.oninput=()=>{S.v[i.dataset.k]=i.value;calc()});
   calc();
 }
@@ -806,6 +772,7 @@ function calc(){
   if(st.k==="s"){prem=sg*num(v.p1);strikes=[["Strike",v.k1,"Volume financeiro "+(sg>0?"protegido":"exposto")]];}
   else if(st.k==="p"){prem=sg*num(v.p1);strikes=[["Strike 1",v.k1,"Volume financeiro protegido"],["Strike 2",v.k2,"Volume financeiro máx. de proteção"]];}
   else{prem=sg*num(v.p1)-sg*num(v.p2);strikes=[["Strike 1",v.k1,"Volume financeiro protegido"],["Strike 2",v.k2,"Volume financeiro máx. de proteção"],["Strike "+st.ex,v.k3,"Volume financeiro risco"]];}
+  if(S.flux==="paga")prem=Math.abs(prem);else if(S.flux==="recebe")prem=-Math.abs(prem);
   const premFin=prem*vol*fx;
   let m=`*COTAÇÃO DE PROTEÇÃO – ${a.nome.toUpperCase()}*\n${st.n}\n\n`;
   m+=`Contrato: ${v.ativo||"-"}${vc0?" (venc. "+vc0+")":""}  |  Cotação atual: ${u} ${nf(num(v.cot))}\n`;
@@ -813,19 +780,30 @@ function calc(){
   if(a.conv)m+=`Dólar: R$ ${nf(fx,4)} (valores convertidos para real)\n`;
   m+=`\n*VOLUME FINANCEIRO*\n`;
   strikes.forEach(([l,k,t])=>{m+=`${nf(vol,0)} x ${u} ${nf(num(k))}${a.conv?" x "+nf(fx,4):""} = ${brl(fin(k))}  (${t})\n`});
-  m+=`\n*PRÊMIO ${prem<0?"(CRÉDITO)":"(CUSTO)"}*\n`;
-  m+=`${nf(vol,0)} x ${u} ${nf(prem)}${a.conv?" x "+nf(fx,4):""} = ${brl(premFin)}\n`;
+  const cred=prem<0,ap=Math.abs(premFin),fxs=a.conv?" x "+nf(fx,4):"",un=S.asset==="BOI"?"arroba":"saca";
+  m+=cred?`\n*PRÊMIO RECEBIDO (CRÉDITO)*\n`:`\n*PRÊMIO (CUSTO)*\n`;
+  m+=`${nf(vol,0)} x ${u} ${nf(Math.abs(prem))}${fxs} = ${brl(ap)}\n`;
   m+=`\n*CUSTO OPERACIONAL (${nf(corr*100)}%)*\n`;
   let cost=0;
   strikes.forEach(([l,k])=>{const c=fin(k)*corr;cost+=c;m+=`${brl(fin(k))} x ${nf(corr*100)}% = ${brl(c)}  (contrato de ${nf(num(k))})\n`});
-  const tot=premFin+cost,un=S.asset==="BOI"?"arroba":"saca",pu=vol?premFin/vol:0,cu=vol?cost/vol:0,tu=vol?tot/vol:0;
-  m+=`\n*TOTAL (prêmio + custo operacional): ${brl(tot)}*`;
-  m+=`\n\n*CUSTO POR ${un.toUpperCase()}*\n`;
-  m+=`Prêmio: ${brl(premFin)} ÷ ${nf(vol,0)} = ${brl(pu)}\n`;
-  m+=`Custo operacional: ${brl(cost)} ÷ ${nf(vol,0)} = ${brl(cu)}\n`;
-  m+=`*Total: ${brl(tot)} ÷ ${nf(vol,0)} = ${brl(tu)} por ${un}*`;
-  if(a.conv&&fx)m+=`\n(equivale a US$ ${nf(tu/fx)} por saca)`;
-  $("kpis").innerHTML=`<div class="kpi"><span>Prêmio total</span><b>${brl(premFin)}</b></div><div class="kpi"><span>Custo operacional</span><b>${brl(cost)}</b></div><div class="kpi"><span>Total</span><b>${brl(tot)}</b></div><div class="kpi hl"><span>Custo por ${un}</span><b>${brl(tu)}</b></div>`;
+  const net=cred?ap-cost:ap+cost,pos=net>=0,pu=vol?ap/vol:0,cu=vol?cost/vol:0,nu=vol?Math.abs(net)/vol:0;
+  if(!cred){
+    m+=`\n*TOTAL (prêmio + custo operacional): ${brl(net)}*`;
+    m+=`\n\n*CUSTO POR ${un.toUpperCase()}*\n`;
+    m+=`Prêmio: ${brl(ap)} ÷ ${nf(vol,0)} = ${brl(pu)}\n`;
+    m+=`Custo operacional: ${brl(cost)} ÷ ${nf(vol,0)} = ${brl(cu)}\n`;
+    m+=`*Total: ${brl(net)} ÷ ${nf(vol,0)} = ${brl(nu)} por ${un}*`;
+  }else{
+    m+=`\n*${pos?"CRÉDITO LÍQUIDO":"CUSTO LÍQUIDO"} (prêmio recebido − custo operacional): ${brl(Math.abs(net))}*`;
+    m+=`\n\n*${pos?"CRÉDITO":"CUSTO"} POR ${un.toUpperCase()}*\n`;
+    m+=`Prêmio recebido: ${brl(ap)} ÷ ${nf(vol,0)} = ${brl(pu)}\n`;
+    m+=`Custo operacional: ${brl(cost)} ÷ ${nf(vol,0)} = ${brl(cu)}\n`;
+    m+=`*${pos?"Crédito líquido":"Custo líquido"}: ${brl(Math.abs(net))} ÷ ${nf(vol,0)} = ${brl(nu)} por ${un}*`;
+  }
+  if(a.conv&&fx)m+=`\n(equivale a US$ ${nf(nu/fx)} por saca)`;
+  if(cred)m+=`\n\nObs.: por envolver opção vendida, a operação pode exigir depósito de garantia (margem), conforme as regras da B3 e da corretora.`;
+  const K=(l,v,h)=>`<div class="kpi${h?" hl":""}"><span>${l}</span><b>${v}</b></div>`;
+  $("kpis").innerHTML=cred?K("Prêmio recebido",brl(ap))+K("Custo operacional",brl(cost))+K(pos?"Crédito líquido":"Custo líquido",brl(Math.abs(net)))+K((pos?"Crédito":"Custo")+" por "+un,brl(nu),1):K("Prêmio total",brl(ap))+K("Custo operacional",brl(cost))+K("Total",brl(net))+K("Custo por "+un,brl(nu),1);
   $("out").value=m;
 }
 $("fx").oninput=calc;
